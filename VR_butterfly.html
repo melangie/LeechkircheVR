@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Leechkirche VR with Butterflies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- A-Frame core -->
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+    <!-- Extras for raycasting and GLTF animation -->
+    <script src="https://unpkg.com/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link type="text/css" rel="stylesheet" href="stylesheet/main.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link type="text/css" rel="stylesheet" href="stylesheet/3dhop.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script type="text/javascript" src="js/spidergl.js"></script>
+    <script type="text/javascript" src="js/presenter.js"></script>
+    <script type="text/javascript" src="js/nexus.js"></script>
+    <script type="text/javascript" src="js/ply.js"></script>
+    <script type="text/javascript" src="js/trackball_turntable.js"></script>
+    <script type="text/javascript" src="js/trackball_turntable_pan.js"></script>
+    <script type="text/javascript" src="js/trackball_pantilt.js"></script>
+    <script type="text/javascript" src="js/trackball_sphere.js"></script>
+    <script type="text/javascript" src="js/init.js"></script>
+</head>
+<body>
+
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="images/leechkirche.jpg" class="d-block w-100" alt="...">
+      </div>
+    </div>
+  </div>
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ededda;">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="projekt.html">Projekt</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Leechkirche
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="geschichte.html">Geschichte</a></li>
+                  <li><a class="dropdown-item" href="architektur.html">Architektur</a></li>
+                  <li><a class="dropdown-item" href="heilkraeuter.html">Heilkräuter</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Unterhaltung
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="memory.html">Heilkräuter-Memory</a></li>
+                  <li><a class="dropdown-item" href="https://melaniefrauendorfer.8thwall.app/butterfly/">AR (Smartphone benötigt)</a></li>
+                  <li><a class="dropdown-item" href="VR_butterfly.html">VR</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  3D-Modelle
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="viewer_aussenbereich.html">Außenbereich</a></li>
+                  <li><a class="dropdown-item" href="outside_3d.html">3D Außenbereich Viewer</a></li>
+                  <li><a class="dropdown-item" href="inside360.html">360° Innenbereich</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="kontakt.html">Kontakt</a>
+              </li>
+            </ul>
+          </div>
+          <div class="d-flex ms-auto align-items-center" style="gap: 4px;">
+            <a href="inside360.html" class="nav-link p-0" style="font-size: 15px; color: black;">DE</a>
+            <span style="font-size: 15px;">|</span>
+            <a href="inside360_en.html" class="nav-link p-0" style="font-size: 15px; color: black;">EN</a>
+        </div>
+        </div>
+      </nav>
+
+
+    <div id="viewer-container" style="width: 100%; height: 80vh;">
+      <a-scene xr-mode-ui="enterVREnabled: true; XRMode: vr">
+      <!-- 360° panorama as sky -->
+      <a-sky src="images/360.jpg" rotation="0 -90 0"></a-sky>
+
+      <!-- Invisible ground for raycasting -->
+      <a-plane id="floor" position="0 0 0" rotation="-90 0 0" width="100" height="100" visible="false"></a-plane>
+
+      <!-- Asset definitions -->
+      <a-assets>
+        <a-asset-item id="butterflyModel" src="butterfly.glb"></a-asset-item>
+      </a-assets>
+
+      <!-- ONE template with two halves (normal + mirrored) around body center -->
+      <a-entity id="butterfly-template" visible="false">
+        <!-- right half: offset slightly right, normal orientation -->
+        <a-entity
+          gltf-model="#butterflyModel"
+          animation-mixer
+          scale="0.5 0.5 0.5"
+          position="0 0 0">
+        </a-entity>
+        <!-- left half: mirrored, offset slightly left -->
+        <a-entity
+          gltf-model="#butterflyModel"
+          animation-mixer
+          scale="-0.5 0.5 0.5"
+          position="0 0 0">
+        </a-entity>
+      </a-entity>
+
+      <!-- Camera + center-of-view cursor -->
+      <a-entity camera look-controls position="0 1.6 0">
+        <a-entity
+          id="viewCursor"
+          cursor="fuse: false"
+          raycaster="objects: #floor"
+          position="0 0 -1"
+          geometry="primitive: ring; radiusOuter: 0.02; radiusInner: 0.015"
+          material="shader: flat; color: #CCC">
+        </a-entity>
+      </a-entity>
+
+    </a-scene>
+</div>
+    <script>
+        // Array to track spawned butterflies
+      const spawnedButterflies = [];
+      const MAX_BUTTERFLIES = 15;
+
+      document.querySelector('a-scene').addEventListener('loaded', () => {
+        const cursorEl = document.querySelector('#viewCursor');
+        const template = document.querySelector('#butterfly-template');
+        const sceneEl  = document.querySelector('a-scene');
+
+        cursorEl.addEventListener('click', evt => {
+          const point = evt.detail.intersection.point;
+          const butterfly = template.cloneNode(true);
+
+          butterfly.setAttribute('position', `${point.x} ${point.y} ${point.z}`);
+          butterfly.setAttribute('visible', 'true');
+
+          // Gentle floating animation
+          butterfly.setAttribute('animation__float', {
+            property: 'position',
+            dir: 'alternate',
+            dur: 2000 + Math.random() * 2000,
+            loop: 'true',
+            to: {
+              x: point.x + (Math.random() - 0.5) * 1,
+              y: point.y + 1 + Math.random() * 0.5,
+              z: point.z + (Math.random() - 0.5) * 1
+            }
+          });
+
+          // Add to scene and tracking array
+          sceneEl.appendChild(butterfly);
+          spawnedButterflies.push(butterfly);
+
+          // If exceeding max, remove oldest
+          if (spawnedButterflies.length > MAX_BUTTERFLIES) {
+            const oldest = spawnedButterflies.shift();
+            sceneEl.removeChild(oldest);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
